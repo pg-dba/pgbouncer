@@ -17,20 +17,20 @@ RUN \
   make && \
   # Manual install
   cp pgbouncer /usr/bin && \
-  mkdir -p /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer && \
+  mkdir -p /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer /var/lib/pgbouncer && \
   # entrypoint installs the configuration, allow to write as postgres user
   addgroup -g 46 -S postgres 2>/dev/null && \
   adduser -u 46 -S -D -H -h /var/lib/pgsql -g "PostgreSQL Server" -s /dev/null -G postgres postgres 2>/dev/null && \
-  chown -R postgres:postgres /var/run/pgbouncer /etc/pgbouncer && \
+  chown -R postgres:postgres /var/run/pgbouncer /etc/pgbouncer /var/lib/pgbouncer && \
   chmod 777 /etc/pgbouncer && \
-  cp etc/pgbouncer.ini /tmp/pgbouncer.ini.example && \
-  cp etc/userlist.txt /tmp/userlist.txt.example && \
+  cp etc/pgbouncer.ini /var/lib/pgbouncer/pgbouncer.ini.example && \
+  cp etc/userlist.txt /var/lib/pgbouncer/userlist.txt.example && \
   # Cleanup
   cd /tmp && \
   rm -rf /tmp/pgbouncer*  && \
   apk del --purge autoconf autoconf-doc automake udns-dev curl gcc libc-dev libevent-dev libtool make libressl-dev pkgconfig
 
-COPY ul.sh /tmp/
+COPY ul.sh /var/lib/pgbouncer/
 COPY entrypoint.sh /entrypoint.sh
 USER postgres
 EXPOSE 5432

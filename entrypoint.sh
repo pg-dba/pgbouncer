@@ -8,9 +8,8 @@ set -e
 
 PG_CONFIG_DIR=/etc/pgbouncer
 
-cp /tmp/pgbouncer.ini.example ${PG_CONFIG_DIR}/;
-cp /tmp/userlist.txt.example ${PG_CONFIG_DIR}/;
-cp /tmp/ul.sh ${PG_CONFIG_DIR}/;
+cp /var/lib/pgbouncer/pgbouncer.ini.example ${PG_CONFIG_DIR}/;
+cp /var/lib/pgbouncer/userlist.txt.example ${PG_CONFIG_DIR}/;
 
 if [ -n "$DATABASE_URL" ]; then
   # Thanks to https://stackoverflow.com/a/17287984/146289
