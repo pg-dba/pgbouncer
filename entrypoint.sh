@@ -8,6 +8,9 @@ set -e
 
 PG_CONFIG_DIR=/etc/pgbouncer
 
+#mkdir -p /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer;
+#chown -R 999:999 /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer;
+
 if [ -n "$DATABASE_URL" ]; then
   # Thanks to https://stackoverflow.com/a/17287984/146289
 
