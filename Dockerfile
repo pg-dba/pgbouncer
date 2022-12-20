@@ -25,6 +25,7 @@ RUN \
   addgroup -g 70 -S postgres 2>/dev/null && \
   adduser -u 70 -S -D -H -h /var/lib/postgresql -g "Postgres user" -s /bin/sh -G postgres postgres 2>/dev/null && \
   chown -R postgres /var/run/pgbouncer /etc/pgbouncer && \
+  chmod -R 2777 /etc/pgbouncer && \
   # Cleanup
   cd /tmp && \
   rm -rf /tmp/pgbouncer*  && \
