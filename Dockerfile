@@ -24,7 +24,6 @@ RUN \
   chown -R postgres:postgres /var/run/pgbouncer /etc/pgbouncer /var/lib/pgbouncer && \
   chmod 777 /etc/pgbouncer && \
   cp etc/pgbouncer.ini /var/lib/pgbouncer/pgbouncer.ini.example && \
-  cp etc/userlist.txt /var/lib/pgbouncer/userlist.txt.example && \
   # Cleanup
   cd /tmp && \
   rm -rf /tmp/pgbouncer*  && \
