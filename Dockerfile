@@ -30,6 +30,10 @@ RUN \
   apk del --purge autoconf autoconf-doc automake udns-dev curl gcc libc-dev libevent-dev libtool make libressl-dev pkgconfig
 
 COPY ul.sh /var/lib/pgbouncer/
+
+RUN \
+  chown -R postgres:postgres /var/lib/pgbouncer/ul.sh
+
 COPY entrypoint.sh /entrypoint.sh
 USER postgres
 EXPOSE 5432
