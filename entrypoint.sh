@@ -57,6 +57,8 @@ if [ -n "$DB_USER" -a -n "$DB_PASSWORD" -a -e "${_AUTH_FILE}" ] && ! grep -q "^\
      pass="$DB_PASSWORD"
   fi
   echo "\"$DB_USER\" \"$pass\"" >> ${PG_CONFIG_DIR}/userlist.txt
+  echo "#if postgres use SCRAM-SHA-256, then password must be explicitly" >> ${PG_CONFIG_DIR}/userlist.txt
+  echo "\"$DB_USER\" \"$pass\"" >> /var/lib/pgbouncer/userlist.md5.txt
   echo "Wrote authentication credentials to ${PG_CONFIG_DIR}/userlist.txt"
 fi
 
