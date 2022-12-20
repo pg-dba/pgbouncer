@@ -8,7 +8,7 @@ set -e
 
 PG_CONFIG_DIR=/etc/pgbouncer
 
-mv /var/lib/pgbouncer/pgbouncer.ini.example ${PG_CONFIG_DIR}/;
+#cp /var/lib/pgbouncer/* ${PG_CONFIG_DIR}/;
 
 if [ -n "$DATABASE_URL" ]; then
   # Thanks to https://stackoverflow.com/a/17287984/146289
@@ -43,6 +43,7 @@ fi
 # Notice that `docker inspect` will show unencrypted env variables.
 _AUTH_FILE="${AUTH_FILE:-$PG_CONFIG_DIR/userlist.txt}"
 
+# if md5. If SCRAM-SHA-256, see /var/lib/pgbouncer/ul.sh
 # Workaround userlist.txt missing issue
 # https://github.com/edoburu/docker-pgbouncer/issues/33
 if [ ! -e "${_AUTH_FILE}" ]; then
