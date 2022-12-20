@@ -19,16 +19,12 @@ RUN \
   cp pgbouncer /usr/bin && \
   mkdir -p /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer && \
   # entrypoint installs the configuration, allow to write as postgres user
-  ls -la etc/ && \
-  cat /etc/passwd | grep 999 && \
-  cat /etc/group | grep 999 && \
   addgroup -g 46 -S postgres 2>/dev/null && \
   adduser -u 46 -S -D -H -h /var/lib/pgsql -g "PostgreSQL Server" -s /dev/null -G postgres postgres 2>/dev/null && \
   chown -R postgres:postgres /var/run/pgbouncer /etc/pgbouncer && \
   chmod 777 /etc/pgbouncer && \
-  cp etc/pgbouncer.ini /etc/pgbouncer/pgbouncer.ini.example && \
-  cp etc/userlist.txt /etc/pgbouncer/userlist.txt.example && \
-  touch /etc/pgbouncer/userlist.txt && \
+  cp etc/pgbouncer.ini /tmp/pgbouncer.ini.example && \
+  cp etc/userlist.txt /tmp/userlist.txt.example && \
   # Cleanup
   cd /tmp && \
   rm -rf /tmp/pgbouncer*  && \
