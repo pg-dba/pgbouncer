@@ -20,6 +20,8 @@ RUN \
   mkdir -p /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer && \
   # entrypoint installs the configuration, allow to write as postgres user
   ls -la etc/ && \
+  id -u postgres && \
+  id -g postgres && \
   addgroup -g 46 -S postgres 2>/dev/null && \
   adduser -u 46 -S -D -H -h /var/lib/pgsql -g "PostgreSQL Server" -s /dev/null -G postgres postgres 2>/dev/null && \
   chown -R postgres:postgres /var/run/pgbouncer /etc/pgbouncer && \
