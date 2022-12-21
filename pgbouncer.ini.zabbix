@@ -172,6 +172,7 @@ ignore_startup_parameters = options
 
 ;; Use <appname - host> as application_name on server.
 ;application_name_add_host = 0
+application_name_add_host = 1
 
 ;; Period for updating aggregated stats.
 ;stats_period = 60
@@ -226,6 +227,7 @@ log_disconnections = 0
 
 ;; log error messages pooler sends to clients
 ;log_pooler_errors = 1
+log_pooler_errors = 1
 
 ;; write aggregated stats into log
 ;log_stats = 1
@@ -240,12 +242,12 @@ log_stats = 0
 
 ;; Close server connection if its been connected longer.
 ;server_lifetime = 3600
-server_lifetime = 30
+server_lifetime = 300
 
 ;; Close server connection if its not been used in this time.  Allows
 ;; to clean unnecessary connections from pool after peak.
 ;server_idle_timeout = 600
-server_idle_timeout = 30
+server_idle_timeout = 300
 
 ;; Cancel connection attempt if server does not answer takes longer.
 ;server_connect_timeout = 15
@@ -280,7 +282,7 @@ client_login_timeout = 60
 ;; Clean automatically created database entries (via "*") if they stay
 ;; unused in this many seconds.
 ; autodb_idle_timeout = 3600
-autodb_idle_timeout = 30
+autodb_idle_timeout = 300
 
 ;; Close connections which are in "IDLE in transaction" state longer
 ;; than this many seconds.
