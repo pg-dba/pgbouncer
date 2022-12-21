@@ -40,7 +40,7 @@ RUN \
 COPY entrypoint.sh /entrypoint.sh
 USER postgres
 
-RUN echo 'alias nocomments="sed -e :a -re '"'"'s/<\!--.*?-->//g;/<\!--/N;//ba'"'"' | sed -e :a -re '"'"'s/\/\*.*?\*\///g;/\/\*/N;//ba'"'"' | grep -v -P '"'"'^\s*(#|;|--|//|$)'"'"'"' >> ~/.ashrc
+RUN echo 'alias nocomments="sed -e :a -re '"'"'s/<\!--.*?-->//g;/<\!--/N;//ba'"'"' | sed -e :a -re '"'"'s/\/\*.*?\*\///g;/\/\*/N;//ba'"'"' | grep -v -E '"'"'^\s*(#|;|--|//|$)'"'"'"' >> ~/.ashrc
 
 EXPOSE 5432
 
