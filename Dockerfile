@@ -30,9 +30,11 @@ RUN \
   apk del --purge autoconf autoconf-doc automake udns-dev curl gcc libc-dev libevent-dev libtool make libressl-dev pkgconfig
 
 COPY ul.sh /var/lib/pgbouncer/
+COPY pgbouncer.ini.zabbix /var/lib/pgbouncer/
+COPY readme.txt /var/lib/pgbouncer/
 
 RUN \
-  chown -R postgres:postgres /var/lib/pgbouncer/ul.sh
+  chown -R postgres:postgres /var/lib/pgbouncer
 
 COPY entrypoint.sh /entrypoint.sh
 USER postgres
