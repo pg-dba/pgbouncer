@@ -38,10 +38,13 @@ RUN \
 
 COPY entrypoint.sh /entrypoint.sh
 USER postgres
+
+RUN echo 'alias nocomments="sed -e :a -re '"'"'s/<\!--.*?-->//g;/<\!--/N;//ba'"'"' | sed -e :a -re '"'"'s/\/\*.*?\*\///g;/\/\*/N;//ba'"'"' | grep -v -P '"'"'^\s*(#|;|--|//|$)'"'"'"' >> ~/.profile
+
 EXPOSE 5432
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-WORKDIR /etc/pgbouncer
-
 CMD ["/usr/bin/pgbouncer", "/etc/pgbouncer/pgbouncer.ini"]
+
+WORKDIR /etc/pgbouncer
