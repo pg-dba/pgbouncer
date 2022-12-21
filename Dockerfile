@@ -40,7 +40,8 @@ COPY entrypoint.sh /entrypoint.sh
 USER postgres
 EXPOSE 5432
 
+ENTRYPOINT ["/entrypoint.sh"]
+
 WORKDIR /etc/pgbouncer
 
-ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/bin/pgbouncer", "/etc/pgbouncer/pgbouncer.ini"]
