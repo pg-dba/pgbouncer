@@ -34,12 +34,13 @@ COPY pgbouncer.ini.zabbix /var/lib/pgbouncer/
 COPY readme.txt /var/lib/pgbouncer/
 
 RUN \
-  chown -R postgres:postgres /var/lib/pgbouncer
+  chown -R postgres:postgres /var/lib/pgbouncer && \
+  echo "source ~/.ashrc" > /etc/profile.d/ashrc.sh
 
 COPY entrypoint.sh /entrypoint.sh
 USER postgres
 
-RUN echo 'alias nocomments="sed -e :a -re '"'"'s/<\!--.*?-->//g;/<\!--/N;//ba'"'"' | sed -e :a -re '"'"'s/\/\*.*?\*\///g;/\/\*/N;//ba'"'"' | grep -v -P '"'"'^\s*(#|;|--|//|$)'"'"'"' >> ~/.profile
+RUN echo 'alias nocomments="sed -e :a -re '"'"'s/<\!--.*?-->//g;/<\!--/N;//ba'"'"' | sed -e :a -re '"'"'s/\/\*.*?\*\///g;/\/\*/N;//ba'"'"' | grep -v -P '"'"'^\s*(#|;|--|//|$)'"'"'"' >> ~/.ashrc
 
 EXPOSE 5432
 
