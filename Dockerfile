@@ -44,6 +44,8 @@ RUN echo 'alias nocomments="sed -e :a -re '"'"'s/<\!--.*?-->//g;/<\!--/N;//ba'"'
 
 EXPOSE 5432
 
+ENV ENV="/etc/profile"
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["/usr/bin/pgbouncer", "/etc/pgbouncer/pgbouncer.ini"]
