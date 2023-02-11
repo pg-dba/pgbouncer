@@ -11,7 +11,7 @@ https://github.com/edoburu/docker-pgbouncer/blob/master/entrypoint.sh<BR>
  DB_PASSWORD<BR>
  /data/zabbix-pgbouncer:/etc/pgbouncer<BR>
 
-# Автогенерация userlist.txt<BR>
+**Автогенерация userlist.txt**
 
 <pre><code>cat &lt;&lt;EOF | psql -U postgres -d postgres
 COPY (SELECT usename, passwd FROM pg_shadow WHERE passwd is not null AND usename not in ('postgres') ORDER BY usename) 
@@ -19,7 +19,7 @@ TO '/var/lib/postgresql/data/userlist.txt' WITH DELIMITER ' ' CSV FORCE QUOTE us
 EOF
 </code></pre>
 
-# переместить в нужную папку и выставить права доступа
+**переместить в нужную папку и выставить права доступа**
 <pre><code>mv /data/postgres/userlist.txt /data/pgbouncer/
 chmod -R 777 /data/pgbouncer
 </code></pre>
