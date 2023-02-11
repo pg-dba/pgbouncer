@@ -13,7 +13,7 @@ https://github.com/edoburu/docker-pgbouncer/blob/master/entrypoint.sh<BR>
 
 # Автогенерация userlist.txt<BR>
 
-<pre><code>cat &larr;&larr;EOF | psql -U postgres -d postgres
+<pre><code>cat &lt;&lt;EOF | psql -U postgres -d postgres
 COPY (SELECT usename, passwd FROM pg_shadow WHERE passwd is not null AND usename not in ('postgres') ORDER BY usename) 
 TO '/var/lib/postgresql/data/userlist.txt' WITH DELIMITER ' ' CSV FORCE QUOTE usename, passwd;
 EOF
