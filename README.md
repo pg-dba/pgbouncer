@@ -13,10 +13,13 @@ https://github.com/edoburu/docker-pgbouncer/blob/master/entrypoint.sh<BR>
 
 # Автогенерация userlist.txt<BR>
 
-cat <<EOF | psql -U postgres -d postgres<BR>
-COPY (SELECT usename, passwd FROM pg_shadow WHERE passwd is not null ORDER BY usename) TO '/var/lib/postgresql/data/userlist.txt' WITH DELIMITER ' ' CSV FORCE QUOTE usename, passwd;<BR>
-EOF<BR>
+<pre><code>cat <<EOF | psql -U postgres -d postgres
+COPY (SELECT usename, passwd FROM pg_shadow WHERE passwd is not null AND usename not in ('postgres') ORDER BY usename) 
+TO '/var/lib/postgresql/data/userlist.txt' WITH DELIMITER ' ' CSV FORCE QUOTE usename, passwd;
+EOF
+</code></pre>
 
 # переместить в нужную папку и выставить права доступа
-mv /data/postgres/userlist.txt /data/pgbouncer/<BR>
+<pre><code>mv /data/postgres/userlist.txt /data/pgbouncer/
 chmod -R 777 /data/pgbouncer
+</code></pre>
