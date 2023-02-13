@@ -38,6 +38,9 @@ RUN \
   echo "source ~/.ashrc" > /etc/profile.d/ashrc.sh
 
 COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod 777 /entrypoint.sh
+
 USER postgres
 
 RUN echo 'alias nocomments="sed -e :a -re '"'"'s/<\!--.*?-->//g;/<\!--/N;//ba'"'"' | sed -e :a -re '"'"'s/\/\*.*?\*\///g;/\/\*/N;//ba'"'"' | grep -v -E '"'"'^\s*(#|;|--|//|$)'"'"'"' >> ~/.ashrc
