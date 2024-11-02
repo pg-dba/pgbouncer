@@ -1,6 +1,7 @@
 FROM alpine:3.14
 ARG VERSION=1.23.1
 
+# alpine 3.15 - В программу установки добавлена поддержка шифрования.
 # Inspiration from https://github.com/gmr/alpine-pgbouncer/blob/master/Dockerfile
 # hadolint ignore=DL3003,DL3018
 RUN \
